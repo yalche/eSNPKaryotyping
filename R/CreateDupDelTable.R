@@ -12,7 +12,7 @@ CreateDupDelTable<-function(window, accession, vcf_path, output_path, isPlot=TRU
   vcf_table <- CreateVcfTable(accession, vcf_path, chr_data)
 
   deletion_vcf_table=MajorMinorCalc(Table = vcf_table,minDP = 1,maxDP = 100000000,minAF = 0)
-  duplication_vcf_table = MajorMinorCalc(Table = vcf_table,minDP = 20,maxDP = 100000000,minAF = 0.2)
+  duplication_vcf_table = MajorMinorCalc(Table = vcf_table,minDP = 20,maxDP = 100000000,minAF = 0.1)
   duplication_vcf_table$position2=duplication_vcf_table$position+chr_data$chr_total[duplication_vcf_table$chr]
 
   if(isTable == TRUE) {
