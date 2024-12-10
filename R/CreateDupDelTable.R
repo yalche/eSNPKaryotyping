@@ -22,7 +22,7 @@ CreateDupDelTable<-function(window, accession, vcf_path, output_path, isPlot=TRU
     merged <- merge(deletion_df, duplication_df, by = "chr")
     merged$accession = accession
 
-    merged <- merged %>% select(accession, chr, significance, deletion)
+    merged <- merged %>% select(accession, chr, p_value, significance, deletion)
     write.csv(merged, paste0(output_path, accession, "_", "DupDel.csv"))
   }
   if(isPlot == TRUE) {
