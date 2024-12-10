@@ -20,6 +20,7 @@ PlotGenome<-function(orderedTable,Window,Ylim,PValue){
   
   genome_size <- chr_data$sum_chr
   centromere_pos <- chr_data$centromere_pos
+  chr_size <- chr_data$chr_size
   
   orderedTable$position=orderedTable$position+chr_total[orderedTable$chr]
   
