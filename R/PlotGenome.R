@@ -19,7 +19,8 @@ PlotGenome<-function(orderedTable,Window,Ylim,PValue){
   chr_total <- chr_data$chr_total
   
   genome_size <- chr_data$sum_chr
-
+  centromere_pos <- chr_data$centromere_pos
+  
   orderedTable$position=orderedTable$position+chr_total[orderedTable$chr]
   
   col=rollmedian(orderedTable$chr,window)%%2+1
