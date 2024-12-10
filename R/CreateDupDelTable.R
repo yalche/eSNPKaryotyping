@@ -16,7 +16,7 @@ CreateDupDelTable<-function(window, accession, vcf_path, output_path, isPlot=TRU
   duplication_vcf_table$position2=duplication_vcf_table$position+chr_data$chr_total[duplication_vcf_table$chr]
 
 
-  duplication_df <- CreateDuplicationTable(window, output_path, duplication_vcf_table, chr_data)
+  duplication_df <- CreateDuplicationTable(window, duplication_vcf_table, chr_data)
   deletion_df <- CreateDeletionTable(deletion_vcf_table, chr_data)
 
   merged <- merge(deletion_df, duplication_df, by = "chr")
