@@ -15,7 +15,7 @@ CalculateCentromereSize<-function() {
     chr_total=c(chr_total,sum(chr_size_list[1:i]))
     centromere_pos_total <- c(centromere_pos_total, (chr_total[i] + centromere_pos[i]))
   }
-  return(list(chr_total = chr_total, centromere_pos_total = centromere_pos_total, sum_chr = sum(chr_size_list), chr_size = chr_size_list))
+  return(list(chr_total = chr_total, centromere_pos_total = centromere_pos_total, sum_chr = sum(chr_size_list), chr_size = chr_size_list, centromere_pos = centromere_pos))
 
 }
 
