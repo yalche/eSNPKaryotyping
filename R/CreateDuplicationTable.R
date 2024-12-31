@@ -12,7 +12,7 @@ chr_index <- function(index, chr_total, centromere_pos_total) {
   if (index < centromere_pos_total[24]) {
     return(paste0(24, " p arm"))
   }
-  return (paste0(24, " q arm")) 
+  return (paste0(24, " q arm"))
 }
 
 ttest=function(x, vcf_table){
@@ -24,13 +24,12 @@ ttest=function(x, vcf_table){
 #'
 #' This function returns the duplication table
 #'
-#' @param window 
-#' @param vcf_table 
+#' @param window
+#' @param vcf_table
 #' @param chr_data
-#' @return 
+#' @return
 #' @export
 CreateDuplicationTable<-function(window, vcf_table, chr_data) {
-
   df_all = data.frame(pos = c(), ratio = c(), p_value = c())
   for (i in 1:24) {
     temp <- vcf_table[vcf_table$chr==i,]
@@ -40,17 +39,17 @@ CreateDuplicationTable<-function(window, vcf_table, chr_data) {
     temp_df = data.frame(pos, ratio, p_value)
     df_all = rbind(df_all, temp_df)
   }
-  
+
   df_all$p_value=p.adjust(df_all$p_value,"fdr")
   df_all$p_value=-1*log(df_all$p_value,10)
-  
+
   df_all <- df_all %>%
     rowwise() %>%
     mutate(chr = chr_index(pos, chr_data$chr_total, chr_data$centromere_pos_total)) %>%
     ungroup()
-  
+
   aggregated_df <- df_all %>%
-    group_by(chr) %>% 
+    group_by(chr) %>%
     summarize(p_value = mean(p_value), genes = n()) %>%   mutate(significance = ifelse(p_value > 2, "High", "Low"))
 
   return(aggregated_df)

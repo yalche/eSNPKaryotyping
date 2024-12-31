@@ -11,6 +11,8 @@ CreateVcfTable<-function(accession, vcf_path, chr_data) {
   table$chr=as.numeric(table$chr)
   table=table[order(table$chr,table$position),]
   table=table[table$chr>0,]
-  
+
   return(table)
 }
+
+
