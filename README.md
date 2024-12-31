@@ -1,24 +1,18 @@
 **Work in Progress**
 
-Forked Repository:
+Forked Repository  
+Origin: eSNPKaryotyping (https://github.com/BenvenLab/eSNPKaryotyping)  
+Analysis of chromosomal aberrations from RNA-Seq data (Weissbein et al., 2015).  
 
-Origin: eSNPKaryotyping (https://github.com/BenvenLab/eSNPKaryotyping)
+Key Additions:  
+Creation of tabular summaries for chromosomal analyses.  
+Each chromosome analyzed independently.  
 
-Analysis of chromosomal aberrations from RNA-Seq data (Weissbein et al., 2015).
+Main Function: CreateDupDelTable.  
+Outputs structured tabular data (.csv) in addition to visualization.  
 
-Key Additions:
-
-Creation of tabular summaries for chromosomal analyses.
-Each chromosome analyzed independently.
-
-Main Function: CreateDupDelTable.
-Outputs structured tabular data (.csv) in addition to visualization.
-
-library(zoo)
-
-library(gplots)
-
-library(devtools)
-
-library(dplyr)
+library(zoo)  
+library(gplots)  
+library(devtools)  
+library(dplyr)  
 
