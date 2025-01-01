@@ -27,11 +27,17 @@ CreateDeletionTable<-function(vcf_table, chr_data) {
       d=tbl2[tbl2$position<chr_data$centromere_pos[i],]
       homo=sum(d$snp==FALSE)
       hetro=sum(d$snp==TRUE)
+      if (hetro == 0) {
+        hetro <- 1
+      }
       rat=c(rat,homo/hetro)
 
       d=tbl2[tbl2$position>chr_data$centromere_pos[i],]
       homo=sum(d$snp==FALSE)
       hetro=sum(d$snp==TRUE)
+      if (hetro == 0) {
+        hetro <- 1
+      }
       rat=c(rat,homo/hetro)
 
       cent = c(cent, paste0(i, " p arm"))

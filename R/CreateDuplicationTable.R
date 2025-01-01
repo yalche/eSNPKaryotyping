@@ -43,6 +43,9 @@ CreateDuplicationTable<-function(window, vcf_table, chr_data) {
   df_all$p_value=p.adjust(df_all$p_value,"fdr")
   df_all$p_value=-1*log(df_all$p_value,10)
 
+  if (nrow(df_all) == 0) {
+    return(df_all)
+  }
   df_all <- df_all %>%
     rowwise() %>%
     mutate(chr = chr_index(pos, chr_data$chr_total, chr_data$centromere_pos_total)) %>%

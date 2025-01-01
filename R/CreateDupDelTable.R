@@ -22,13 +22,14 @@ CreateDupDelTable<-function(windows_list, accessions_list, vcf_path, output_path
       if(isTable == TRUE) {
         duplication_df <- CreateDuplicationTable(window, duplication_vcf_table, chr_data)
         deletion_df <- CreateDeletionTable(deletion_vcf_table, chr_data)
+        if (nrow(duplication_df) != 0) {
+          merged <- merge(deletion_df, duplication_df, by = "chr")
+          merged$accession = accession
+          merged$window = window
 
-        merged <- merge(deletion_df, duplication_df, by = "chr")
-        merged$accession = accession
-        merged$window = window
-
-        merged <- merged %>% select(accession, chr, window, p_value, significance, deletion)
-        final_table <- rbind(final_table, merged)
+          merged <- merged %>% select(accession, chr, window, p_value, significance, deletion)
+          final_table <- rbind(final_table, merged)
+        }
       }
       if(isPlot == TRUE) {
         jpeg(paste0(output_path, accession, "_", window, ".jpg"), width = 800, height = 300, quality = 100)
