@@ -14,7 +14,7 @@ CreateDupDelTable<-function(windows_list, accessions_list, vcf_path, output_path
   for (accession in accessions_list) {
     file_path = paste0(vcf_path, accession, "/VcfTable.csv")
     if (file.exists(file_path)) {
-      vcf_table <- read.csv(file_path)
+      vcf_table <- read.csv(file_path,  sep="\t")
     }
     else {
       vcf_table <- CreateVcfTable(accession, vcf_path, chr_data)
