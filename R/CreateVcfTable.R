@@ -12,6 +12,10 @@ CreateVcfTable<-function(accession, vcf_path, chr_data) {
   table=table[order(table$chr,table$position),]
   table=table[table$chr>0,]
 
+  fileName = "VcfTable.csv"
+  pathToSave = paste(vcf_path, accession, '/', fileName, sep="")
+  write.table(table,pathToSave , sep="\t",row.names=F,quote=F)
+
   return(table)
 }
 
