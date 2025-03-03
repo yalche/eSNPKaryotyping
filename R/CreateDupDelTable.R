@@ -40,9 +40,10 @@ CreateDupDelTable<-function(windows_list, accessions_list, vcf_path, output_path
       }
 
       if(isPlot == TRUE) {
+        try({
         jpeg(paste0(output_path, accession, "_", window, ".jpg"), width = 800, height = 300, quality = 100)
         PlotGenome(orderedTable = duplication_vcf_table,Window = window,Ylim = 3,PValue = "TRUE")
-        dev.off()
+        dev.off()})
       }
     }
   }
