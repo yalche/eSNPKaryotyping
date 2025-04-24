@@ -7,14 +7,14 @@
 #' @param isPlot True or False, default is True
 #' @return
 #' @export
-CreateDupDelTable<-function(windows_list, accessions_list, vcf_path, output_path, isPlot=TRUE, isTable=TRUE) {
+CreateDupDelTable<-function(windows_list, accessions_list, vcf_path, output_path, isPlot=TRUE, isTable=TRUE, useCache=TRUE) {
   chr_data <- CalculateCentromereSize()
   final_table <- data.frame(accession = c(), chr = c(), window = c(), p_value = c(), significance = c(), deletion = c())
 
   for (accession in accessions_list) {
     file_path = paste0(vcf_path, accession, "/VcfTable.csv")
-    if (file.exists(file_path)) {
-      vcf_table <- read.csv(file_path,  sep="\t")
+    if (file.exists(file_path) && useCache == TRUE) {
+        vcf_table <- read.table(file_path, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
     }
     else {
       vcf_table <- CreateVcfTable(accession, vcf_path, chr_data)
